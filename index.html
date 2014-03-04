@@ -36,9 +36,9 @@
                 "count" : 20
                 }];
 
-    var width = 720,
-        height = 550,
-        topMargin = 20,
+    var width = 1000,
+        height = 500,
+        topMargin = 30,
         radius = Math.min(width, height - topMargin) / 2,
         labelRadius = 150,
         transitionTime = 2000;
@@ -84,10 +84,9 @@
       .duration(transitionTime)
       .attrTween("d", tweenPie);
 
-      var legend = d3.select("body").append("svg")
+      var legend = svg.append("g")
         .attr("class", "legend")
-        .attr("width", radius * 2)
-        .attr("height", radius * 2)
+        .attr("transform","translate(300,-250)")
       .selectAll("g")
         .data(color.domain().slice().reverse())
       .enter().append("g")
