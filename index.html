@@ -12,29 +12,37 @@
     .title {
       font-family: ‘Metrophobic’, Arial, serif; font-size: 24px;
     }
+    .countdown {
+      font-family: courier; font-size: 30px; font-weight: bold;
+    }
+
     </style>
   </head>
   <body>
     <script>
 
+    var epoch 
+
     var data = [{"name": "Java",
-                 "count" : 10
-                },{
-                "name": "Scala",
-                "count" : 20
-                },{
-                "name": "C",
-                 "count" : 10
-                },{
-                "name": "Matlab",
-                "count" : 20
-                },{
-                "name": "Ruby",
-                "count" : 10
-                },{
-                "name": "C++",
-                "count" : 20
-                }];
+         "count" : 10
+        },{
+        "name": "Scala",
+        "count" : 20
+        },{
+        "name": "C",
+         "count" : 10
+        },{
+        "name": "Matlab",
+        "count" : 20
+        },{
+        "name": "Ruby",
+        "count" : 10
+        },{
+        "name": "C++",
+        "count" : 20
+        }];
+
+
 
     var width = 1000,
         height = 500,
@@ -116,6 +124,35 @@
       var i = d3.interpolate({startAngle: 0, endAngle: 0}, b);
       return function(t) { return arc(i(t)); };
     }
+
+
+    var countdown = d3.select("body").append("svg")
+                      .attr("width", width)
+                      .attr("height", 500);
+
+    countdown.append("text").attr("class", "title")
+        .attr("class", "countdown")
+        .attr("x", width/2)             
+        .attr("y", 50)
+        .attr("text-anchor", "middle") 
+ 
+
+    setInterval(function() {
+      var now = new Date();
+      dd = d3.format("02d");
+
+    countdown.selectAll("text").attr("class", "title")
+        .attr("class", "countdown")
+        .attr("x", width/2)             
+        .attr("y", 50)
+        .attr("text-anchor", "middle") 
+        .text(dd(now.getHours()) + ':' + dd(now.getMinutes()) + ':' + dd(now.getSeconds())); 
+    }, 1000);
+
+    //var clock = d3.select("body").appendattr("transform", "translate(" + 100 + "," + 100 + ")").text("Hi");
+
+
+ 
     </script>
   </body>
 </html>
